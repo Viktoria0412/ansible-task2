@@ -1,0 +1,94 @@
+- hosts: web
+  tasks:
+  - name: Install Apache
+    yum:
+      name: httpd
+      state: latest
+
+  - name: Start Apache Service
+    service:
+      name: httpd
+      enabled: yes
+      state: started
+
+  - name: install the latest version of unzip
+    yum:
+      name: unzip
+      state: latest 
+
+  - name: Unarchive a file that needs to be downloaded (added in 2.0)
+    unarchive:
+       src:  https://www.free-css.com/assets/files/free-css-templates/download/page278/catalog-z.zip
+       dest: /tmp/
+       remote_src: yes
+
+  - name: Copy files to /var/www/html
+    copy:
+       src: /tmp/templatemo_556_catalog_z/index.html
+       dest: /var/www/html/
+       remote_src: yes
+
+  - name: Copy files to /var/www/html
+    copy:
+       src: /tmp/templatemo_556_catalog_z/video
+       dest: /var/www/html/
+       remote_src: yes
+
+  - name: Copy files to /var/www/html
+    copy:
+       src: /tmp/templatemo_556_catalog_z/img 
+       dest: /var/www/html/
+       remote_src: yes
+
+  - name: Copy files to /var/www/html
+    copy:
+       src: /tmp/templatemo_556_catalog_z/videos.html
+       dest: /var/www/html/
+       remote_src: yes
+
+  - name: Copy files to /var/www/html
+    copy:
+       src: /tmp/templatemo_556_catalog_z/about.html 
+       dest: /var/www/html/
+       remote_src: yes
+
+  - name: Copy files to /var/www/html
+    copy:
+       src: /tmp/templatemo_556_catalog_z/css  
+       dest: /var/www/html/
+       remote_src: yes
+
+  - name: Copy files to /var/www/html
+    copy:
+       src: /tmp/templatemo_556_catalog_z/js
+       dest: /var/www/html/
+       remote_src: yes
+
+  - name: Copy files to /var/www/html
+    copy:
+       src: /tmp/templatemo_556_catalog_z/contact.html
+       dest: /var/www/html/
+       remote_src: yes
+
+  - name: Copy files to /var/www/html
+    copy:
+       src: /tmp/templatemo_556_catalog_z/fontawesome 
+       dest: /var/www/html/
+       remote_src: yes
+
+  - name: Copy files to /var/www/html
+    copy:
+       src: /tmp/templatemo_556_catalog_z/photo-detail.html 
+       dest: /var/www/html/
+       remote_src: yes
+
+  - name: Copy files to /var/www/html
+    copy:
+       src: /tmp/templatemo_556_catalog_z/video-detail.html
+       dest: /var/www/html/
+       remote_src: yes
+  
+  - name: Restart service httpd, in all cases
+    service:
+       name: httpd
+       state: restarted
